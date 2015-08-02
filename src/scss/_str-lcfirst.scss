@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+// Uncapitalize string
+//
+// @param {string} $string
+//
+// @return {string}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function str-lcfirst($string) {
+  @return to-lower-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}

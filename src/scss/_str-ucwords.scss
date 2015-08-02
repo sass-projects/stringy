@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+// Capitalize each word in string
+//
+// @param {string} $string
+//
+// @return {string}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function str-ucwords($string) {
+  $progress: $string;
+  $result: "";
+
+  $running: true;
+
+  @while $running {
+    $index: str-index($progress, " ");
+    @if $index {
+      $result: $result + str-ucfirst(str-slice($progress, 1, $index));
+      $progress: str-slice($progress, ($index + 1));
+    }
+    @else {
+      $running: false;
+    }
+  }
+
+  @return str-ucfirst($result) + str-ucfirst($progress);
+}
