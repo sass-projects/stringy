@@ -1,0 +1,12 @@
+// Add stringy functions
+//
+
+@include "./src/scss/helpers/convert-units.scss";
+
+@include "./src/scss/camelize";
+@include "./src/scss/str-lcfirst";
+@include "./src/scss/str-replace";
+@include "./src/scss/str-to-list";
+@include "./src/scss/str-num";
+@include "./src/scss/str-ucfirst";
+@include "./src/scss/str-ucwords";

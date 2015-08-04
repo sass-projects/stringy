@@ -6,6 +6,6 @@ module.exports = {
     ],
     'default': [
         'test',
-        'sass_import'
+        'concat'
     ]
 };

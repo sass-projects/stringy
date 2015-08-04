@@ -13,10 +13,8 @@ module.exports = {
             }
         },
         src: [
-            'src/scss/settings/*.scss',
-            'src/scss/functions/*.scss',
             'src/scss/helpers/*.scss',
-            'src/scss/grid/*.scss',
+            'src/scss/*.scss',
         ],
         dest: 'dist/grider.scss',
     }

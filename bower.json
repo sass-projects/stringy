@@ -5,7 +5,7 @@
   "authors": [
     "Daniel Bannert <d.bannert@anolilab.de>"
   ],
-  "description": "A simple mixin library for Sass.",
+  "description": "A Sass string manipulation library.",
   "moduleType": [
     "amd",
     "node"

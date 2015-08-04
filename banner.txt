@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-//      A simple mixin library for Sass
+//      A Sass string manipulation library
 //
 //                http://growcss.de
 //
