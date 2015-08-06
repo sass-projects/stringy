@@ -1,0 +1,13 @@
+@function str-split($string, $var, $location: 'first') {
+  $length: str-length($string);
+  $index:  str-index($string, $var);
+
+  $first:  str-slice($string, 0, $index - 1);
+  $second: str-slice($string, $index + 2, $length);
+
+  @if $location == 'first' {
+    @return $first;
+  } @else {
+    @return $second;
+  }
+}

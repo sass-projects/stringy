@@ -1,0 +1,16 @@
+@function str-to-map($string, $map:()) {
+  @if $string {
+    $comma:   str-index($string, ',');
+    $colon:   str-index($string, ':');
+    $item:    if($comma, str-slice($string, 0, $comma - 1), $string);
+    $string:  if($comma, str-slice($string, $comma +1), null);
+    $key:     str-slice($item, 0, $colon - 1);
+    $val:     str-slice($item, $colon +1);
+    $map:     map-merge($map, ($key: $val));
+
+    @return str-to-map($string, $map);
+  }
+
+  @return $map;
+}
+// https://gist.github.com/jakob-e/f3accce1f6277fea1d89
