@@ -11,13 +11,12 @@
   $result: "";
   $exclude: " ", "-", "–", "—", "_", ",", ";", ":", ".";
 
-  @while str-length($progress) > 0  {
+  @while str-length($progress) > 0 {
     $char: str-slice($progress, 1, 1);
 
     @if contain($exclude, $char) {
       $progress: str-ucfirst(str-slice($progress, 2, 2)) + str-slice($progress, 3);
-    }
-    @else {
+    } @else {
       $result: $result + $char;
       $progress: str-slice($progress, 2);
     }

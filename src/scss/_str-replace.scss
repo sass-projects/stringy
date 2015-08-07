@@ -26,6 +26,6 @@
   @if $fail-silently {
     @return $string;
   } @else {
-    @error ""#{$search}" was not found in "#{$string}"";
+    @error "#{$search} was not found in #{$string}";
   }
 }

@@ -1,7 +1,7 @@
 // Add stringy functions
 //
 
-@include "./src/scss/helpers/convert-units.scss";
+@include "./src/scss/helpers/convert-units";
 
 @include "./src/scss/camelize";
 @include "./src/scss/str-lcfirst";
