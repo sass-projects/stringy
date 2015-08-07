@@ -3,15 +3,15 @@
 // Find first char which is not a space
 //
 // @param {string} $string - String
-// @param {string} $direction ['left'] - Either `left` or `right`
+// @param {string} $direction ["left"] - Either `left` or `right`
 //
 // @return {number}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
-@function first-index($string, $direction: 'left') {
+@function first-index($string, $direction: "left") {
   @for $i from 1 through str-length($string) {
-    $index: if($direction == 'left', $i, -$i);
+    $index: if($direction == "left", $i, -$i);
 
-    @if str-slice($string, $index, $index) != ' ' {
+    @if str-slice($string, $index, $index) != " " {
       @return $index;
     }
   }

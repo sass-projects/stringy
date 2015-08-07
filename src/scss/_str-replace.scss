@@ -10,7 +10,7 @@
 //
 // @param {string} $string - Initial string
 // @param {string} $search - Substring to replace
-// @param {string} $replace ('') - New value
+// @param {string} $replace ("") - New value
 //
 // @return {string} - Updated string
 //
@@ -26,6 +26,6 @@
   @if $fail-silently {
     @return $string;
   } @else {
-    @error "'#{$search}' was not found in '#{$string}'";
+    @error ""#{$search}" was not found in "#{$string}"";
   }
 }

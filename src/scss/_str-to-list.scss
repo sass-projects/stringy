@@ -4,16 +4,16 @@
 // @each $selectorItem in $selectorItems {
 //     @debug $selectorItem;
 // }
-@function str-to-list($string, $separator: ' ', $start-at: 1) {
+@function str-to-list($string, $separator: " ", $start-at: 1) {
   $work-str: str-slice($string, $start-at);
   $list: ();
   $index-of-first-space: str-index($work-str, $separator);
 
   @if $index-of-first-space == null {
-      $list: ($work-str);
+    $list: ($work-str);
   } @else {
-      $list: (str-slice($work-str, 1, $index-of-first-space - 1));
-      $list: join($list, str-to-list($work-str, $start-at: $index-of-first-space + 1));
+    $list: (str-slice($work-str, 1, $index-of-first-space - 1));
+    $list: join($list, str-to-list($work-str, $start-at: $index-of-first-space + 1));
   }
 
   @return $list;

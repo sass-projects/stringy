@@ -8,11 +8,11 @@
 //
 //  @example scss - Usage
 //    .element {
-//      content: trim('        ');
-//      content: trim('no spaces');
-//      content: trim('   3 spaces in front');
-//      content: trim('   3 spaces in front and back   ');
-//      content: trim('          lots and lots of spaces');
+//      content: trim("        ");
+//      content: trim("no spaces");
+//      content: trim("   3 spaces in front");
+//      content: trim("   3 spaces in front and back   ");
+//      content: trim("          lots and lots of spaces");
 //    }
 //
 //  @example css - CSS Output
@@ -27,7 +27,7 @@
 @function trim($string) {
   @return str-slice(
     $string,
-    first-index($string, 'left'),
-    first-index($string, 'right')
+    first-index($string, "left"),
+    first-index($string, "right")
   );
 }

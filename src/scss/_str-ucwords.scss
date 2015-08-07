@@ -14,11 +14,11 @@
 
   @while $running {
     $index: str-index($progress, " ");
+
     @if $index {
       $result: $result + str-ucfirst(str-slice($progress, 1, $index));
       $progress: str-slice($progress, ($index + 1));
-    }
-    @else {
+    } @else {
       $running: false;
     }
   }
