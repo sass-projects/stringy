@@ -16,6 +16,6 @@ module.exports = {
             'src/scss/helpers/*.scss',
             'src/scss/*.scss',
         ],
-        dest: 'dist/grider.scss',
+        dest: 'dist/stringy.scss',
     }
 };

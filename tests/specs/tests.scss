@@ -1,10 +1,23 @@
 @import "true";
 
 // Import all scss files
-@import "include";
+@import "import";
 
 // Import scss test files
 @import "scss/helpers/convert-units.test";
+@import "scss/helpers/first-index.test";
+@import "scss/helpers/trim.test";
+
+@import "scss/camelize.test";
+@import "scss/str-lcfirst.test";
+@import "scss/str-replace.test";
+@import "scss/str-split.test";
+@import "scss/str-to-list.test";
+@import "scss/str-to-map.test";
+@import "scss/str-to-num.test";
+@import "scss/str-ucfirst.test";
+@import "scss/str-ucwords.test";
+
 
 // Optionally show summary report in CSS and/or the command line:
 // - If you use Mocha, reporting to the command line is automatic.
