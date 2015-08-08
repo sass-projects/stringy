@@ -7,10 +7,10 @@
 [![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg?style=flat-square)](https://github.com/growcss/stringy/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-## Master
-[![Build Status](https://img.shields.io/travis/growcss/stringy.svg?branch=develop&style=flat-square)](https://travis-ci.org/growcss/stringy)
+## Chat Room on Gitter
+[![Join the chat at https://gitter.im/growcss/stringy](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/growcss/stringy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## Develop
+## Master
 [![Build Status](https://img.shields.io/travis/growcss/stringy.svg?branch=develop&style=flat-square)](https://travis-ci.org/growcss/stringy)
 
 ### Bits and Pieces:
