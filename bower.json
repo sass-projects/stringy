@@ -1,0 +1,35 @@
+{
+  "name": "growcss-stringy",
+  "version": "0.0.0",
+  "homepage": "http://growcss.com/",
+  "authors": [
+    "Daniel Bannert <d.bannert@anolilab.de>"
+  ],
+  "description": "A Sass string manipulation library.",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "keywords": [
+    "grunt",
+    "bower",
+    "bin",
+    "development",
+    "dev",
+    "build",
+    "generator",
+    "generate",
+    "tool",
+    "sass",
+    "scss",
+    "growcss"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
