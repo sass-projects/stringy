@@ -21,11 +21,7 @@
   "bugs": {
     "url": "https://github.com/growcss/stringy/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
+  "license": "MIT",
   "engines": {
     "node": ">= 0.10.0"
   },
