@@ -6,6 +6,24 @@
 // @param {string} $direction ["left"] - Either `left` or `right`
 //
 // @return {number}
+//
+// @example scss - Usage
+//   .element-first {
+//     content: first-index("Find first char", "left");
+//   }
+//
+//   .element-last {
+//     content: first-index("Find first char", "right");
+//   }
+//
+// @example css - CSS Output
+//   .element-first {
+//      content: "1";
+//   }
+//
+//   .element-last {
+//      content: "-1";
+//   }
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function first-index($string, $direction: "left") {
   @for $i from 1 through str-length($string) {
