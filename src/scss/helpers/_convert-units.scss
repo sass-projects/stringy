@@ -2,6 +2,29 @@
 
 // Helper function for str-to-num fn.
 // Source: http://sassmeister.com/gist/9647408
+//
+// @param {number} $number - Number
+// @param {string} $unit
+//
+// @return {number|false}
+//
+// @example scss - Usage
+//   .element {
+//     widht: convert-units(2, "px");
+//   }
+//
+//   .element {
+//     widht: convert-units(100, "rem");
+//   }
+//
+// @example css - CSS Output
+//   .element {
+//      widht: 2px;
+//   }
+//
+//   .element {
+//      widht: 100rem;
+//   }
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function convert-units($number, $unit) {
   $strings: "px", "cm", "mm", "%", "ch", "pica", "in", "em", "rem", "pt", "pc", "ex", "vw", "vh", "vmin", "vmax", "deg", "rad", "grad", "turn";
