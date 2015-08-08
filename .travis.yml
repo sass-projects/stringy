@@ -17,3 +17,12 @@ before_install:
 before_script:
   - npm install
   - bower install
+
+# Gitter notifications
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/aa7f671ba1a073e5a922
+    on_success: change
+    on_failure: always
+    on_start: false
