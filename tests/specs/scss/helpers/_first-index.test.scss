@@ -1,0 +1,39 @@
+@include test-module("first-index") {
+  // Testing first-index functions
+  @include test("first-index [function] Find first char from start.") {
+    $content: first-index("Find first char", "left");
+    $expect: 1;
+
+    @include assert-equal($content, $expect, "Check if we get the first char which is not a space.");
+
+    $content: first-index("   Find first char", "left");
+    $expect: 4;
+
+    @include assert-equal($content, $expect, "Check if we get the first char which is not a space.");
+  }
+
+  @include test("first-index [function] Find no first char.") {
+    $content: first-index("   ", "left");
+    $expect: 0;
+
+    @include assert-equal($content, $expect, "Check if we get no first char.");
+
+    $content: first-index("   ", "right");
+    $expect: -3;
+
+    @include assert-equal($content, $expect, "Check if we get no first char.");
+  }
+
+  @include test("first-index [function] Find first char on the end.") {
+
+    $content: first-index("Find first char   ", "right");
+    $expect: -4;
+
+    @include assert-equal($content, $expect, "Check if we get a char which is not a space.");
+
+    $content: first-index("Find first char", "right");
+    $expect: -1;
+
+    @include assert-equal($content, $expect, "Check if we get a char which is not a space.");
+  }
+}
