@@ -1,0 +1,146 @@
+@include test-module("camelize") {
+  // Testing camelize functions
+  @include test("camelize [function] a hyphen string.") {
+    $camelize: camelize("my-function-name");
+
+    $expect: "myFunctionName";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a uppercase string.") {
+    $camelize: camelize("CamelCase");
+
+    $expect: "camelCase";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with hyphen.") {
+    $camelize: camelize("Camel-Case");
+
+    $expect: "CamelCase";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with space.") {
+    $camelize: camelize("camel case");
+
+    $expect: "CamelCase";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with space and hyphen.") {
+    $camelize: camelize("camel -case");
+
+    $expect: "CamelCase";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with 2 spaces and hyphen.") {
+    $camelize: camelize("camel - case");
+
+    $expect: "CamelCase";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with underscore.") {
+    $camelize: camelize("camel_case");
+
+    $expect: "CamelCase";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with some letter.") {
+    $camelize: camelize("camel c test");
+
+    $expect: "camelCTest";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with a number.") {
+    $camelize: camelize("string_with1number");
+
+    $expect: "stringWith1Number";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with a 2 number.") {
+    $camelize: camelize("string-with-2-2 numbers");
+
+    $expect: "stringWith22Numbers";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with a 2 number.") {
+    $camelize: camelize("data_rate");
+
+    $expect: "dataRate";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with a 2 number.") {
+    $camelize: camelize("background-color");
+
+    $expect: "backgroundColor";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with a 2 number.") {
+    $camelize: camelize("yes_we_can");
+
+    $expect: "yesWeCan";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with a 2 number.") {
+    $camelize: camelize("-moz-something");
+
+    $expect: "mozSomething";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with many underscores.") {
+    $camelize: camelize("_car_speed_");
+
+    $expect: "carSpeed";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with many uppercase letter.") {
+    $camelize: camelize("ServeHTTP");
+
+    $expect: "serveHTTP";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a string with some numbers letter.") {
+    $camelize: camelize("1camel2case");
+
+    $expect: "1Camel2Case";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+
+  @include test("camelize [function] a uutf-8 string.") {
+    $camelize: camelize("camel σase");
+
+    $expect: "camelΣase";
+
+    @include assert-equal($camelize, $expect, "");
+  }
+}

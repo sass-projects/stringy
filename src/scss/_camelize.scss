@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-// Camelize string
+// Returns a camelCase version of the string.
+// Trims surrounding spaces, capitalizes letters following digits, spaces, dashes and underscores, and removes spaces, dashes, as well as underscores.
 //
 // @param {string} $string
 //
