@@ -1,4 +1,8 @@
 @function str-split($string, $var, $location: "first") {
+  @if type-of($string) != "string" {
+    @error "`str-split` function expecting a string for $string; #{type-of($string)} given.";
+  }
+
   $length: str-length($string);
   $index:  str-index($string, $var);
 

@@ -1,4 +1,8 @@
 @function str-to-map($string, $map:()) {
+  @if type-of($string) != "string" {
+    @error "`str-to-map` function expecting a string for $string; #{type-of($string)} given.";
+  }
+
   @if $string {
     $comma:   str-index($string, ",");
     $colon:   str-index($string, ":");

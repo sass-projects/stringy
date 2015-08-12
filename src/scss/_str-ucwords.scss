@@ -7,6 +7,10 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-ucwords($string) {
+  @if type-of($string) != "string" {
+    @error "`str-ucwords` function expecting a string for $string; #{type-of($string)} given.";
+  }
+
   $progress: $string;
   $result: "";
 
