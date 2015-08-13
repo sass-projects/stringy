@@ -11,6 +11,6 @@
 
     $expect: "abcde";
 
-    @include assert-equal(str-lcfirst(abcde), $expect, "should upper case first character from string");
+    @include assert-equal(str-lcfirst(abcde), $expect, "should not upper case first character from string");
   }
 }
