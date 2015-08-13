@@ -19,7 +19,7 @@
     @include assert-equal($content, $expect, "Check if we get no first char.");
 
     $content: first-index("   ", "right");
-    $expect: 0;
+    $expect: -3;
 
     @include assert-equal($content, $expect, "Check if we get no first char.");
   }
