@@ -17,7 +17,7 @@ DEPENDENCIES
   psych (= 2.0)
   sass (= 3.4.14)
   scss_lint (= 0.40.1)
-  true
+  true (= 2.0.2)
 
 BUNDLED WITH
    1.10.6
