@@ -8,9 +8,9 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function camelize($string) {
-  @if type-of($string) != "string" {
-    @error "`camelize` function expecting a string for $string; #{type-of($string)} given.";
-  }
+  // @if type-of($string) != "string" {
+  //   @error "`camelize` function expecting a string for $string; #{type-of($string)} given.";
+  // }
 
   $progress: $string;
   $result: "";
