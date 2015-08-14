@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+// Return character from `$string` at `$index`.
+//
+// @param {string} $string - string to check
+// @param {string} $index  - index to inspect
+//
+// @return {string}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function char-at($string, $index) {
+  @if type-of($string) != "string" {
+    @error "`char-at` function expecting a string for $string; #{type-of($string)} given.";
+  }
+
+  @if type-of($index) != "number" {
+    @error "`char-at` function expecting a number for $index; #{type-of($index)} given.";
+  }
+
+  @if $index < 1 or $index > str-length($string) {
+    @error "Out of bounds $index for `char-at`.";
+  }
+
+  @return str-slice($string, $index, $index);
+}
