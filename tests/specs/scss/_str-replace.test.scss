@@ -1,0 +1,6 @@
+@include test-module("str-replace") {
+  // Testing str-replace functions
+  @include test("str-replace [function] should replace substring by another substring in string.") {
+    @include assert-equal(str-replace("abcde", "a", "z"), "zbcde", "");
+  }
+}

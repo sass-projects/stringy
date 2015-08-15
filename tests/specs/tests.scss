@@ -8,6 +8,12 @@
 @import "scss/helpers/first-index.test";
 @import "scss/helpers/trim.test";
 
+@import "scss/camelize.test";
+@import "scss/char-at.test";
+@import "scss/str-count.test";
+@import "scss/str-ends-with.test";
+@import "scss/str-explode.test";
+@import "scss/str-implode.test";
 @import "scss/str-lcfirst.test";
 @import "scss/str-replace.test";
 @import "scss/str-split.test";
@@ -16,7 +22,6 @@
 @import "scss/str-to-num.test";
 @import "scss/str-ucfirst.test";
 @import "scss/str-ucwords.test";
-@import "scss/camelize.test";
 
 
 // Optionally show summary report in CSS and/or the command line:

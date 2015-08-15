@@ -1,8 +1,8 @@
 scss:
-    config_file: .scss-lint.yml
+  config_file: .scss-lint.yml
 
 ruby:
-    enabled: false
+  enabled: false
 
 javascript:
-    enabled: false
+  enabled: false

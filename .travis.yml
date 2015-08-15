@@ -9,7 +9,7 @@ node_js:
 
 script:
   - grunt test -v --stack -d
-  - true-cli "tests\specs\tests.scss"
+  # - true-cli "tests\specs\tests.scss"
 
 before_install:
   - npm install -g grunt-cli bower

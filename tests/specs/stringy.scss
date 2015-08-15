@@ -152,6 +152,143 @@
   @return $result;
 }
 
+// Return character from `$string` at `$index`.
+//
+// @param {string} $string - string to check
+// @param {string} $index  - index to inspect
+//
+// @return {string}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function char-at($string, $index) {
+  @if type-of($string) != "string" {
+    @error "`char-at` function expecting a string for $string; #{type-of($string)} given.";
+  }
+
+  @if type-of($index) != "number" {
+    @error "`char-at` function expecting a number for $index; #{type-of($index)} given.";
+  }
+
+  @if $index < 1 or $index > str-length($string) {
+    @error "Out of bounds $index for `char-at`.";
+  }
+
+  @return str-slice($string, $index, $index);
+}
+
+// Count the number of occurrences of `$needle` in `$string`.
+//
+// @param {string} $string - string
+// @param {string} $needle - substring to count in `$string`
+//
+// @return {number}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function str-count($string, $needle) {
+  @if type-of($string) != "string" {
+    @error "`str-count` function expecting a string for $string; #{type-of($string)} given.";
+  }
+
+  @if type-of($needle) != "string" {
+    @error "`str-count` function expecting a string for $needle; #{type-of($needle)} given.";
+  }
+
+  $index: str-index($string, $needle);
+  $result: if($index, 1, 0);
+
+  @if $index {
+    @for $i from $index + str-length($needle) through str-length($string) {
+      @if str-slice($string, $i, $i + str-length($needle) - 1) == $needle {
+        $result: $result + 1;
+      }
+    }
+  }
+
+  @return $result;
+}
+
+// Check whether `$string` ends with `$needle`.
+//
+// @param {string} $string - string to check
+// @param {string} $needle - substring to check
+//
+// @return {bool}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function str-ends-with($string, $needle) {
+  @if type-of($string) != "string" {
+    @error "`str-starts-with` function expecting a string for $string; #{type-of($string)} given.";
+  }
+
+  @if type-of($needle) != "string" {
+    @error "`str-starts-with` function expecting a string for $needle; #{type-of($needle)} given.";
+  }
+
+  @return str-slice($string, -1 * str-length($needle)) == $needle;
+}
+
+// Split `$string` into several parts using `$delimiter`.
+//
+// @param {string} $string    - string to split
+// @param {string} $delimiter ("") - string to use as a delimiter to split `$string`
+//
+// @return {list}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function str-explode($string, $delimiter: "") {
+  @if type-of($string) != "string" {
+    @error "`explode` function expecting a string; #{type-of($string)} given.";
+  }
+
+  @if type-of($delimiter) != "string" {
+    @error "`explode` function expecting a string; #{type-of($delimiter)} given.";
+  }
+
+  $result: ();
+  $length: str-length($string);
+
+  @if str-length($delimiter) == 0 {
+    @for $i from 1 through $length {
+      $result: append($result, str-slice($string, $i, $i));
+    }
+
+    @return $result;
+  }
+
+  $running: true;
+  $remaining: $string;
+
+  @while $running {
+    $index: str-index($remaining, $delimiter);
+
+    @if $index {
+      $slice: str-slice($remaining, 1, $index - 1);
+      $result: append($result, $slice);
+      $remaining: str-slice($remaining, $index + str-length($delimiter));
+    } @else {
+      $running: false;
+    }
+  }
+
+  @return append($result, $remaining);
+}
+
+// Implode `$list` into a string.
+//
+// @param {list} $list - list to convert to string
+//
+// @return {string}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function str-implode($list) {
+  @if type-of($list) != "list" {
+    @error "$list for str-implode must be a list";
+  }
+
+  $result: "";
+
+  @each $item in $list {
+    $result: $result + if(length($item) > 1, str-implode($item), $item);
+  }
+
+  @return $result;
+}
+
 // Uncapitalize string
 //
 // @param {string} $string
@@ -199,22 +336,68 @@
   }
 }
 
-@function str-split($string, $var, $location: "first") {
+// String split
+//
+// Splits a String into a list of substrings using `$separator`.
+// If separator is omitted, the list returned contains one element consisting of the entire string.
+// If separator is an empty string, str is converted to a list of all characters.
+// Integer specifying a limit on the number of splits to be found.
+// The split method still splits on every match of separator, but it truncates the returned list to at most limit elements.
+//
+// @param {string} $string
+// @param {string} $separator
+// @param {$number} $limit
+//
+// @return {list}
+//
+// https://gist.github.com/pascalduez/065e560c6314c7e9d7f8
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function str-split($string, $separator: null, $limit: null) {
   @if type-of($string) != "string" {
     @error "`str-split` function expecting a string for $string; #{type-of($string)} given.";
   }
 
-  $length: str-length($string);
-  $index:  str-index($string, $var);
+  $result: zip(());
 
-  $first:  str-slice($string, 0, $index - 1);
-  $second: str-slice($string, $index + 2, $length);
-
-  @if $location == "first" {
-    @return $first;
-  } @else {
-    @return $second;
+  @if not $separator {
+    @return ($string,);
   }
+
+  @if $separator == "" {
+    @for $i from 1 through str-length($string) {
+      $result: append($result, str-slice($string, $i, $i));
+    }
+
+    @return $result;
+  }
+
+  $running: true;
+  $progress: $string;
+  $length: str-length($separator);
+
+  @while $running {
+    $index: str-index($progress, $separator);
+    @if $index {
+      $result: append($result, str-slice($progress, 1, ($index - 1)));
+      $progress: str-slice($progress, ($index + $length));
+    } @else {
+      $running: false;
+    }
+  }
+
+  $result: append($result, $progress);
+
+  @if $limit and $limit > 0 {
+    $limit: if($limit > length($result), length($result), $limit);
+    $return: ();
+    @for $i from 1 through $limit {
+      $return: append($return, nth($result, $i));
+    }
+
+    @return $return;
+  }
+
+  @return $result;
 }
 
 // $selectorItems: str-to-list(#{&});
