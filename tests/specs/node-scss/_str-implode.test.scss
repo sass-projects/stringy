@@ -1,0 +1,7 @@
+@include test-module("str-implode") {
+  // Testing str-implode functions
+  @include test("str-implode [function] should split string into list based on delimiter.") {
+    @include assert-equal(str-implode("a" "b" "c" "d" "e"), "abcde", "");
+    @include assert-equal(str-implode("a" "b" ("c" "d" "e")), "abcde", "");
+  }
+}

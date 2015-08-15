@@ -7,7 +7,9 @@ node_js:
   - "0.12"
   - "0.10"
 
-script: grunt test -v --stack -d
+script:
+  - grunt test -v --stack -d
+  # - true-cli "tests\specs\tests.scss"
 
 before_install:
   - npm install -g grunt-cli bower

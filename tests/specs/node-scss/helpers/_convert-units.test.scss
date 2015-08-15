@@ -1,0 +1,149 @@
+@include test-module("convert-units") {
+  // Testing convert-units functions
+  @include test("convert-units [function] Get 2px.") {
+    $content: convert-units(2, "px");
+    $expect: 2px;
+
+    @include assert-equal($content, $expect, "Check if we get 2px.");
+  }
+
+  @include test("convert-units [function] Get 2cm.") {
+    $content: convert-units(2, "cm");
+    $expect: 2cm;
+
+    @include assert-equal($content, $expect, "Check if we get 2cm.");
+  }
+
+  @include test("convert-units [function] Get 2mm.") {
+    $content: convert-units(2, "mm");
+    $expect: 2mm;
+
+    @include assert-equal($content, $expect, "Check if we get 2mm.");
+  }
+
+  @include test("convert-units [function] Get 2%.") {
+    $content: convert-units(2, "%");
+    $expect: 2%;
+
+    @include assert-equal($content, $expect, "Check if we get 2%.");
+  }
+
+  @include test("convert-units [function] Get 2ch.") {
+    $content: convert-units(2, "ch");
+    $expect: 2ch;
+
+    @include assert-equal($content, $expect, "Check if we get 2ch.");
+  }
+
+  @include test("convert-units [function] Get 2pica.") {
+    $content: convert-units(2, "pica");
+    $expect: 2pica;
+
+    @include assert-equal($content, $expect, "Check if we get 2pica.");
+  }
+
+  @include test("convert-units [function] Get 5in.") {
+    $content: convert-units(5, "in");
+    $expect: 5in;
+
+    @include assert-equal($content, $expect, "Check if we get 5in.");
+  }
+
+  @include test("convert-units [function] Get 0em.") {
+    $content: convert-units(0, "em");
+    $expect: 0em;
+
+    @include assert-equal($content, $expect, "Check if we get 0em.");
+  }
+
+  @include test("convert-units [function] Get 9rem.") {
+    $content: convert-units(9, "rem");
+    $expect: 9rem;
+
+    @include assert-equal($content, $expect, "Check if we get 9rem.");
+  }
+
+  @include test("convert-units [function] Get 2pt.") {
+    $content: convert-units(2, "pt");
+    $expect: 2pt;
+
+    @include assert-equal($content, $expect, "Check if we get 2pt.");
+  }
+
+  @include test("convert-units [function] Get 2pc.") {
+    $content: convert-units(2, "pc");
+    $expect: 2pc;
+
+    @include assert-equal($content, $expect, "Check if we get 2pc.");
+  }
+
+  @include test("convert-units [function] Get 2ex.") {
+    $content: convert-units(2, "ex");
+    $expect: 2ex;
+
+    @include assert-equal($content, $expect, "Check if we get 2ex.");
+  }
+
+  @include test("convert-units [function] Get 2vw.") {
+    $content: convert-units(2, "vw");
+    $expect: 2vw;
+
+    @include assert-equal($content, $expect, "Check if we get 2vw.");
+  }
+
+  @include test("convert-units [function] Get 2vh.") {
+    $content: convert-units(2, "vh");
+    $expect: 2vh;
+
+    @include assert-equal($content, $expect, "Check if we get 2vh.");
+  }
+
+  @include test("convert-units [function] Get 2vmin.") {
+    $content: convert-units(2, "vmin");
+    $expect: 2vmin;
+
+    @include assert-equal($content, $expect, "Check if we get 2vmin.");
+  }
+
+  @include test("convert-units [function] Get 2deg.") {
+    $content: convert-units(2, "deg");
+    $expect: 2deg;
+
+    @include assert-equal($content, $expect, "Check if we get 2deg.");
+  }
+
+  @include test("convert-units [function] Get 2rad.") {
+    $content: convert-units(2, "rad");
+    $expect: 2rad;
+
+    @include assert-equal($content, $expect, "Check if we get 2rad.");
+  }
+
+  @include test("convert-units [function] Get 2grad.") {
+    $content: convert-units(2, "grad");
+    $expect: 2grad;
+
+    @include assert-equal($content, $expect, "Check if we get 2grad.");
+  }
+
+  @include test("convert-units [function] Get 2turn.") {
+    $content: convert-units(2, "turn");
+    $expect: 2turn;
+
+    @include assert-equal($content, $expect, "Check if we get 2turn.");
+  }
+
+  @include test("convert-units [function] Get false if unit dont exist.") {
+    $content: convert-units(2, "test");
+    $expect: false;
+
+    @include assert-equal($content, $expect, "Check if we get false.");
+  }
+
+  @include test("convert-units [function] Get false if we dont get a number.") {
+    $content: convert-units("test", "px");
+    $expect: false;
+
+    @include assert-equal($content, $expect, "Check if we get false.");
+  }
+}

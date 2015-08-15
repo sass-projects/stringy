@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+// Implode `$list` into a string.
+//
+// @param {list} $list - list to convert to string
+//
+// @return {string}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+@function str-implode($list) {
+  @if type-of($list) != "list" {
+    @error "$list for str-implode must be a list";
+  }
+
+  $result: "";
+
+  @each $item in $list {
+    $result: $result + if(length($item) > 1, str-implode($item), $item);
+  }
+
+  @return $result;
+}

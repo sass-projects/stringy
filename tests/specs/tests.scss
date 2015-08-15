@@ -1,7 +1,7 @@
 @import "true";
 
 // Import all scss files
-@import "import";
+@import "stringy";
 
 // Import scss test files
 @import "scss/helpers/convert-units.test";
@@ -9,6 +9,11 @@
 @import "scss/helpers/trim.test";
 
 @import "scss/camelize.test";
+@import "scss/char-at.test";
+@import "scss/str-count.test";
+@import "scss/str-ends-with.test";
+@import "scss/str-explode.test";
+@import "scss/str-implode.test";
 @import "scss/str-lcfirst.test";
 @import "scss/str-replace.test";
 @import "scss/str-split.test";

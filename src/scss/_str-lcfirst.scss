@@ -7,5 +7,8 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-lcfirst($string) {
+  @if type-of($string) != "string" {
+    @error "`str-lcfirst` function expecting a string for $string; #{type-of($string)} given.";
+  }
   @return to-lower-case(str-slice($string, 1, 1)) + str-slice($string, 2);
 }

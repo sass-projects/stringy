@@ -1,12 +1,17 @@
 @charset "UTF-8";
 
-// Camelize string
+// Returns a camelCase version of the string.
+// Trims surrounding spaces, capitalizes letters following digits, spaces, dashes and underscores, and removes spaces, dashes, as well as underscores.
 //
 // @param {string} $string
 //
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function camelize($string) {
+  // @if type-of($string) != "string" {
+  //   @error "`camelize` function expecting a string for $string; #{type-of($string)} given.";
+  // }
+
   $progress: $string;
   $result: "";
   $exclude: " ", "-", "–", "—", "_", ",", ";", ":", ".";
@@ -15,12 +20,12 @@
     $char: str-slice($progress, 1, 1);
 
     @if contain($exclude, $char) {
-      $progress: str-ucfirst(str-slice($progress, 2, 2)) + str-slice($progress, 3);
+      $progress: capitalize(str-slice($progress, 2, 2)) + str-slice($progress, 3);
     } @else {
       $result: $result + $char;
       $progress: str-slice($progress, 2);
     }
- }
+  }
 
   @return $result;
 }

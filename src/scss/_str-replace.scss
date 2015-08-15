@@ -17,6 +17,10 @@
 // @author Hugo Giraudel https://gist.github.com/HugoGiraudel/1b4f2da5527830088e4d
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-replace($string, $search, $replacement, $fail-silently: false) {
+  @if type-of($string) != "string" {
+    @error "`str-replace` function expecting a string for $string; #{type-of($string)} given.";
+  }
+
   $index: str-index($string, $search);
 
   @if $index {

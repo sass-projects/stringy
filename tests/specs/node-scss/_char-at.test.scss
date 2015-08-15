@@ -1,0 +1,17 @@
+@include test-module("char-at") {
+  // Testing char-at functions
+  @include test("char-at [function] should return the character at given index.") {
+    $expect: "b";
+
+    @include assert-equal(char-at("abcde", 2), $expect, "should lower case first character from string.");
+  }
+
+  // Dont work
+  // @include test("char-at [function] should return false if there is no character at given index.") {
+  //   $expect: false;
+
+  //   @include assert-equal(char-at("abcde", 10), $expect, "return false");
+  //   @include assert-equal(char-at("abcde", 0), $expect, "return false");
+  //   @include assert-equal(char-at("abcde", -5), $expect, "return false");
+  // }
+}

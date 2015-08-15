@@ -1,0 +1,7 @@
+@include test-module("str-explode") {
+  // Testing str-explode functions
+  @include test("str-explode [function] should split string into list based on delimiter.") {
+    @include assert-equal(str-explode("a b c d e", " "), "a" "b" "c" "d" "e", "");
+    @include assert-equal(str-explode("abcde", "c"), "ab" "de", "");
+  }
+}

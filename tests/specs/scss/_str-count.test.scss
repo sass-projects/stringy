@@ -1,0 +1,8 @@
+@include test-module("str-count") {
+  // Testing str-count functions
+  @include test("str-count [function] should return the number of occurrences of substring in string.") {
+    @include assert-equal(str-count("accec", "c"), 3, "");
+    @include assert-equal(str-count("abcde", "a"), 1, "");
+    @include assert-equal(str-count("abcde", "z"), 0, "");
+  }
+}
