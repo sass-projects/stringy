@@ -1,6 +1,6 @@
 {
   "name": "growcss-stringy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Sass string manipulation library.",
   "author": {
     "name": "Daniel Bannert",
