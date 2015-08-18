@@ -16,7 +16,7 @@ module.exports = {
             'src/scss/helpers/*.scss',
             'src/scss/*.scss',
         ],
-        dest: 'tests/specs/stringy.scss',
+        dest: 'tests/specs/_stringy.scss',
     },
     dist: {
         options: {
@@ -30,6 +30,6 @@ module.exports = {
             'src/scss/helpers/*.scss',
             'src/scss/*.scss',
         ],
-        dest: 'dist/stringy.scss',
+        dest: 'dist/_stringy.scss',
     }
 };

@@ -138,7 +138,7 @@
   $result: "";
   $exclude: " ", "-", "–", "—", "_", ",", ";", ":", ".";
 
-  @while str-length($progress) > 0  {
+  @while str-length($progress) > 0 {
     $char: str-slice($progress, 1, 1);
 
     @if contain($exclude, $char) {
@@ -350,7 +350,7 @@
 //
 // @return {list}
 //
-// https://gist.github.com/pascalduez/065e560c6314c7e9d7f8
+// @author pascalduez https://gist.github.com/pascalduez/065e560c6314c7e9d7f8
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-split($string, $separator: null, $limit: null) {
   @if type-of($string) != "string" {
