@@ -25,6 +25,8 @@
 //   }
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function trim($string) {
+  $string: unquote($string);
+
   @return str-slice(
     $string,
     first-index($string, "left"),

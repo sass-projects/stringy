@@ -1,7 +1,7 @@
 @include test-module("str-split") {
   // Testing str-split functions
   @include test("str-split [function] should replace substring by another substring in string.") {
-    @include assert-equal(str-split("Hello Berlin !"), ("Hello Berlin !", ), "");
+    @include assert-equal(str-split("Hello Berlin !"), ("Hello Berlin !",), "");
     @include assert-equal(str-split("Hello Berlin !", ""), ("H", "e", "l", "l", "o", " ", "B", "e", "r", "l", "i", "n", " ", "!"), "");
     @include assert-equal(str-split("Hello Berlin !", " "), ("Hello", "Berlin", "!"), "");
     // @include assert-equal(str-split("Hello Berlin !", " ", 1), ("Hello",) , "");

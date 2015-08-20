@@ -17,6 +17,8 @@
 // @author pascalduez https://gist.github.com/pascalduez/065e560c6314c7e9d7f8
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-split($string, $separator: null, $limit: null) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-split` function expecting a string for $string; #{type-of($string)} given.";
   }

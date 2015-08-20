@@ -6,6 +6,7 @@
     @include assert-equal(char-at("abcde", 2), $expect, "should lower case first character from string.");
   }
 
+  // Dont work
   // @include test("char-at [function] should return false if there is no character at given index.") {
   //   $expect: false;
 

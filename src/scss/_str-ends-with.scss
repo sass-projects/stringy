@@ -8,6 +8,9 @@
 // @return {bool}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-ends-with($string, $needle) {
+  $string: unquote($string);
+  $needle: unquote($needle);
+
   @if type-of($string) != "string" {
     @error "`str-starts-with` function expecting a string for $string; #{type-of($string)} given.";
   }

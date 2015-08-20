@@ -7,6 +7,8 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-lcfirst($string) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-lcfirst` function expecting a string for $string; #{type-of($string)} given.";
   }

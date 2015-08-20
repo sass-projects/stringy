@@ -1,4 +1,13 @@
+@charset "UTF-8";
+
+//
+// https://gist.github.com/jakob-e/f3accce1f6277fea1d89
+//
+// @return {maps}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-to-map($string, $map:()) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-to-map` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -17,4 +26,3 @@
 
   @return $map;
 }
-// https://gist.github.com/jakob-e/f3accce1f6277fea1d89

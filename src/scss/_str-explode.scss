@@ -8,6 +8,8 @@
 // @return {list}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-explode($string, $delimiter: "") {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`explode` function expecting a string; #{type-of($string)} given.";
   }

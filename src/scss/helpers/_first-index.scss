@@ -25,7 +25,10 @@
 //      content: "-1";
 //   }
 // - - - - - - - - - - - - - - - - - - - - - - - - -
-@function first-index($string, $direction: "left") {
+@function first-index($string, $direction: left) {
+  $string: unquote($string);
+  $direction: unquote($direction);
+
   @for $i from 1 through str-length($string) {
     $index: if($direction == "left", $i, -$i);
 
