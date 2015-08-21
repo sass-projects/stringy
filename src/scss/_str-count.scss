@@ -8,6 +8,9 @@
 // @return {number}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-count($string, $needle) {
+  $string: unquote($string);
+  $needle: unquote($needle);
+
   @if type-of($string) != "string" {
     @error "`str-count` function expecting a string for $string; #{type-of($string)} given.";
   }

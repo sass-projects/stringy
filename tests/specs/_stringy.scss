@@ -36,6 +36,8 @@
 //   }
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function convert-units($number, $unit) {
+  $unit: unquote($unit);
+
   $strings: "px", "cm", "mm", "%", "ch", "pica", "in", "em", "rem", "pt", "pc", "ex", "vw", "vh", "vmin", "vmax", "deg", "rad", "grad", "turn";
   $units:   1px, 1cm, 1mm, 1%, 1ch, 1pica, 1in, 1em, 1rem, 1pt, 1pc, 1ex, 1vw, 1vh, 1vmin, 1vmax, 1deg, 1rad, 1grad, 1turn;
   $index: index($strings, $unit);
@@ -78,7 +80,10 @@
 //      content: "-1";
 //   }
 // - - - - - - - - - - - - - - - - - - - - - - - - -
-@function first-index($string, $direction: "left") {
+@function first-index($string, $direction: left) {
+  $string: unquote($string);
+  $direction: unquote($direction);
+
   @for $i from 1 through str-length($string) {
     $index: if($direction == "left", $i, -$i);
 
@@ -115,6 +120,8 @@
 //   }
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function trim($string) {
+  $string: unquote($string);
+
   @return str-slice(
     $string,
     first-index($string, "left"),
@@ -130,15 +137,17 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function camelize($string) {
-  // @if type-of($string) != "string" {
-  //   @error "`camelize` function expecting a string for $string; #{type-of($string)} given.";
-  // }
+  $string: unquote($string);
+
+  @if type-of($string) != "string" {
+    @error "`camelize` function expecting a string for $string; #{type-of($string)} given.";
+  }
 
   $progress: $string;
   $result: "";
   $exclude: " ", "-", "–", "—", "_", ",", ";", ":", ".";
 
-  @while str-length($progress) > 0  {
+  @while str-length($progress) > 0 {
     $char: str-slice($progress, 1, 1);
 
     @if contain($exclude, $char) {
@@ -160,6 +169,8 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function char-at($string, $index) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`char-at` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -183,6 +194,9 @@
 // @return {number}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-count($string, $needle) {
+  $string: unquote($string);
+  $needle: unquote($needle);
+
   @if type-of($string) != "string" {
     @error "`str-count` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -213,6 +227,9 @@
 // @return {bool}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-ends-with($string, $needle) {
+  $string: unquote($string);
+  $needle: unquote($needle);
+
   @if type-of($string) != "string" {
     @error "`str-starts-with` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -232,6 +249,8 @@
 // @return {list}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-explode($string, $delimiter: "") {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`explode` function expecting a string; #{type-of($string)} given.";
   }
@@ -296,6 +315,8 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-lcfirst($string) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-lcfirst` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -319,6 +340,11 @@
 // @author Hugo Giraudel https://gist.github.com/HugoGiraudel/1b4f2da5527830088e4d
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-replace($string, $search, $replacement, $fail-silently: false) {
+  $string: unquote($string);
+  $search: unquote($search);
+  $replacement: unquote($replacement);
+  $fail-silently: unquote($fail-silently);
+
   @if type-of($string) != "string" {
     @error "`str-replace` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -350,9 +376,11 @@
 //
 // @return {list}
 //
-// https://gist.github.com/pascalduez/065e560c6314c7e9d7f8
+// @author pascalduez https://gist.github.com/pascalduez/065e560c6314c7e9d7f8
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-split($string, $separator: null, $limit: null) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-split` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -405,6 +433,8 @@
 //     @debug $selectorItem;
 // }
 @function str-to-list($string, $separator: " ", $start-at: 1) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-to-list` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -423,7 +453,14 @@
   @return $list;
 }
 
+//
+// https://gist.github.com/jakob-e/f3accce1f6277fea1d89
+//
+// @return {maps}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-to-map($string, $map:()) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-to-map` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -442,12 +479,13 @@
 
   @return $map;
 }
-// https://gist.github.com/jakob-e/f3accce1f6277fea1d89
 
 // Helper function for linear/radial-gradient-parsers.
 // Source: http://sassmeister.com/gist/9647408
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-to-num($string) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-to-num` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -501,6 +539,8 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-ucfirst($string) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-ucfirst` function expecting a string for $string; #{type-of($string)} given.";
   }
@@ -515,6 +555,8 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-ucwords($string) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-ucwords` function expecting a string for $string; #{type-of($string)} given.";
   }

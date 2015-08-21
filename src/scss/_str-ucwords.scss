@@ -7,6 +7,8 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-ucwords($string) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-ucwords` function expecting a string for $string; #{type-of($string)} given.";
   }

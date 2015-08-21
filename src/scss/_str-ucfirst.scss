@@ -7,6 +7,8 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-ucfirst($string) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-ucfirst` function expecting a string for $string; #{type-of($string)} given.";
   }

@@ -4,6 +4,8 @@
 // Source: http://sassmeister.com/gist/9647408
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function str-to-num($string) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-to-num` function expecting a string for $string; #{type-of($string)} given.";
   }

@@ -8,6 +8,8 @@
 // @return {string}
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 @function char-at($string, $index) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`char-at` function expecting a string for $string; #{type-of($string)} given.";
   }

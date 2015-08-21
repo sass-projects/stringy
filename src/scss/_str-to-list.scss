@@ -5,6 +5,8 @@
 //     @debug $selectorItem;
 // }
 @function str-to-list($string, $separator: " ", $start-at: 1) {
+  $string: unquote($string);
+
   @if type-of($string) != "string" {
     @error "`str-to-list` function expecting a string for $string; #{type-of($string)} given.";
   }
