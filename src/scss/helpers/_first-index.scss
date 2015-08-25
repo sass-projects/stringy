@@ -1,30 +1,29 @@
 @charset "UTF-8";
 
-// Find first char which is not a space
-//
-// @param {string} $string - String
-// @param {string} $direction ["left"] - Either `left` or `right`
-//
-// @return {number}
-//
-// @example scss - Usage
-//   .element-first {
-//     content: first-index("Find first char", "left");
-//   }
-//
-//   .element-last {
-//     content: first-index("Find first char", "right");
-//   }
-//
-// @example css - CSS Output
-//   .element-first {
-//      content: "1";
-//   }
-//
-//   .element-last {
-//      content: "-1";
-//   }
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Find first char which is not a space
+///
+/// @param {string} $string - String
+/// @param {string} $direction ["left"] - Either `left` or `right`
+///
+/// @return {number}
+///
+/// @example scss - Usage
+///   .element-first {
+///     content: first-index("Find first char", "left");
+///   }
+///
+///   .element-last {
+///     content: first-index("Find first char", "right");
+///   }
+///
+/// @example css - CSS Output
+///   .element-first {
+///      content: "1";
+///   }
+///
+///   .element-last {
+///      content: "-1";
+///   }
 @function first-index($string, $direction: left) {
   $string: unquote($string);
   $direction: unquote($direction);

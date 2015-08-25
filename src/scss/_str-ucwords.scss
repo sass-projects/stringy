@@ -1,11 +1,10 @@
 @charset "UTF-8";
 
-// Capitalize each word in string
-//
-// @param {string} $string
-//
-// @return {string}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Capitalize each word in string
+///
+/// @param {string} $string
+///
+/// @return {string}
 @function str-ucwords($string) {
   $string: unquote($string);
 

@@ -1,12 +1,11 @@
 @charset "UTF-8";
 
-// Count the number of occurrences of `$needle` in `$string`.
-//
-// @param {string} $string - string
-// @param {string} $needle - substring to count in `$string`
-//
-// @return {number}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Count the number of occurrences of `$needle` in `$string`.
+///
+/// @param {string} $string - string
+/// @param {string} $needle - substring to count in `$string`
+///
+/// @return {number}
 @function str-count($string, $needle) {
   $string: unquote($string);
   $needle: unquote($needle);

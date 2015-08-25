@@ -1,12 +1,11 @@
 @charset "UTF-8";
 
-// Check whether `$string` ends with `$needle`.
-//
-// @param {string} $string - string to check
-// @param {string} $needle - substring to check
-//
-// @return {bool}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Check whether `$string` ends with `$needle`.
+///
+/// @param {string} $string - string to check
+/// @param {string} $needle - substring to check
+///
+/// @return {bool}
 @function str-ends-with($string, $needle) {
   $string: unquote($string);
   $needle: unquote($needle);

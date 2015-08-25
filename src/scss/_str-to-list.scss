@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-// $selectorItems: str-to-list(#{&});
-// @each $selectorItem in $selectorItems {
-//     @debug $selectorItem;
-// }
+/// $selectorItems: str-to-list(#{&});
+/// @each $selectorItem in $selectorItems {
+///     @debug $selectorItem;
+/// }
 @function str-to-list($string, $separator: " ", $start-at: 1) {
   $string: unquote($string);
 

@@ -1,21 +1,20 @@
 @charset "UTF-8";
 
-// String replace
-//
-// @example scss - Usage
-//   str-replace("beforeDURINGafter", "DURING", "REPLACED");
-//
-// @example - Output
-//   beforeafter
-//
-// @param {string} $string - Initial string
-// @param {string} $search - Substring to replace
-// @param {string} $replace ("") - New value
-//
-// @return {string} - Updated string
-//
-// @author Hugo Giraudel https://gist.github.com/HugoGiraudel/1b4f2da5527830088e4d
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// String replace
+///
+/// @example scss - Usage
+///   str-replace("beforeDURINGafter", "DURING", "REPLACED");
+///
+/// @example - Output
+///   beforeafter
+///
+/// @param {string} $string - Initial string
+/// @param {string} $search - Substring to replace
+/// @param {string} $replace ("") - New value
+///
+/// @return {string} - Updated string
+///
+/// @author Hugo Giraudel https:///gist.github.com/HugoGiraudel/1b4f2da5527830088e4d
 @function str-replace($string, $search, $replacement, $fail-silently: false) {
   $string: unquote($string);
   $search: unquote($search);
