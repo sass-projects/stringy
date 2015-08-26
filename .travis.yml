@@ -30,7 +30,7 @@ matrix:
 notifications:
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/0c84c04a34c898b48276
+      - https://webhooks.gitter.im/e/5c6b2c0566a68157128b
     on_success: change
     on_failure: always
     on_start: false
