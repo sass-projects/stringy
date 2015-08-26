@@ -1,5 +1,8 @@
 sudo: false
-cache: bundler
+cache:
+  directories:
+    - bundler
+    - node_modules
 
 language: node_js
 
@@ -20,11 +23,14 @@ before_script:
   - npm install
   - bower install
 
+matrix:
+  fast_finish: true
+
 # Gitter notifications
 notifications:
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/5c6b2c0566a68157128b
+      - https://webhooks.gitter.im/e/0c84c04a34c898b48276
     on_success: change
     on_failure: always
     on_start: false
