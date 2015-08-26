@@ -181,6 +181,39 @@
   @return str-slice($string, $index, $index);
 }
 
+/// Checks if a list contains a value(s).
+///
+/// @param {list} $list
+///   The list to check against.
+///
+/// @param {list} $values
+///   A single value or list of values to check for.
+///
+/// @example scss - Usage
+///   contains($list, $values)
+///
+/// @return {bool}
+@function contains($list, $values...) {
+  @if type-of($list) != "list" {
+    @warn "Type Error: Expected a $list of type ´list´, provided #{type-of($list)} #{$list}";
+    @return false;
+  }
+
+  $result: false;
+
+  @each $key in $values {
+    @each $item in $list {
+      @if length($item) > 1 {
+        $result: $result or contains($item, $values);
+      } @else if index($item, $key) {
+        $result: true;
+      }
+    }
+  }
+
+  @return $result;
+}
+
 /// Count the number of occurrences of `$needle` in `$string`.
 ///
 /// @param {string} $string - string

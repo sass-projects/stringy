@@ -1,0 +1,24 @@
+@include test-module("contains") {
+  // Testing char-at functions
+  @include test("contains [function] should return true if key exist.") {
+    $expect: true;
+    $testlist: body 5, heading (blue red, green yellow);
+    $weights: normal, bold, light, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900, inherit, inital;
+    $multiple-options-correct: 200, 500;
+
+    @include assert-equal(contains($testlist, green), $expect, "should return true.");
+    @include assert-equal(contains($weights, light), $expect, "should return true.");
+    @include assert-equal(contains($weights, $multiple-options-correct), $expect, "should return true on list.");
+  }
+
+  @include test("contains [function] should return false if key dont exist.") {
+    $expect: false;
+    $testlist: body 5, heading (blue red, yellow);
+    $weights: normal, bold, light, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900, inherit, inital;
+    $multiple-options-incorrect: 1000, 100, 200;
+
+    @include assert-equal(contains($testlist, green), $expect, "should return false");
+    @include assert-equal(contains($weights, extrabold), $expect, "should return false.");
+    @include assert-equal(contains($weights, $multiple-options-incorrect), $expect, "should return false on list.");
+  }
+}
