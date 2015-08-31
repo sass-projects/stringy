@@ -6,7 +6,7 @@
 /// @param {string} $index  - index to inspect
 ///
 /// @return {string}
-@function char-at($string, $index) {
+@function at($string, $index) {
   $string: unquote($string);
 
   @if type-of($string) != "string" {

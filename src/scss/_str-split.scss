@@ -8,8 +8,8 @@
 /// Integer specifying a limit on the number of splits to be found.
 /// The split method still splits on every match of separator, but it truncates the returned list to at most limit elements.
 ///
-/// @param {string} $string
-/// @param {string} $separator
+/// @param {string}  $string
+/// @param {string}  $separator
 /// @param {$number} $limit
 ///
 /// @return {list}

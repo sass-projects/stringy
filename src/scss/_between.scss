@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+/// Returns the substring between $start and $end,
+/// if found, or an empty string. An optional offset
+/// may be supplied from which to begin the search
+/// for the start string.
+///
+/// @param {string} $string
+/// @param {string} $start
+/// @param {string} $end
+///
+/// @return {string}
+@function between($string, $start, $end) {
+
+}
