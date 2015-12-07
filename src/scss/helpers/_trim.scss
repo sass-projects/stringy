@@ -1,29 +1,28 @@
 @charset "UTF-8";
 
-// Trim `$string`
-//
-// @param {string} $string - String to trim
-//
-// @return {string}
-//
-// @example scss - Usage
-//   .element {
-//     content: trim("        ");
-//     content: trim("no spaces");
-//     content: trim("   3 spaces in front");
-//     content: trim("   3 spaces in front and back   ");
-//     content: trim("          lots and lots of spaces");
-//   }
-//
-// @example css - CSS Output
-//   .element {
-//     content: "";
-//     content: "no spaces";
-//     content: "3 spaces in front";
-//     content: "3 spaces in front and back";
-//     content: "lots and lots of spaces";
-//   }
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Trim `$string`
+///
+/// @param {string} $string - String to trim
+///
+/// @return {string}
+///
+/// @example scss - Usage
+///   .element {
+///     content: trim("        ");
+///     content: trim("no spaces");
+///     content: trim("   3 spaces in front");
+///     content: trim("   3 spaces in front and back   ");
+///     content: trim("          lots and lots of spaces");
+///   }
+///
+/// @example css - CSS Output
+///   .element {
+///     content: "";
+///     content: "no spaces";
+///     content: "3 spaces in front";
+///     content: "3 spaces in front and back";
+///     content: "lots and lots of spaces";
+///   }
 @function trim($string) {
   $string: unquote($string);
 

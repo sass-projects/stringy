@@ -1,0 +1,416 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Growcss-stringy - v0.0.3</title><link rel="stylesheet" href="assets/css/main.css"><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="Growcss-stringy - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="<p>A Sass string manipulation library.</p>
+"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title"><a href="http://growcss.com/">Growcss-stringy - v0.0.3</a></h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="undefined"><a href="#undefined">General</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-function"><a href="#undefined-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="camelize" data-type="function"><a href="#function-camelize">camelize</a></li><li class="sidebar__item sassdoc__item" data-name="char-at" data-type="function"><a href="#function-char-at">char-at</a></li><li class="sidebar__item sassdoc__item" data-name="contains" data-type="function"><a href="#function-contains">contains</a></li><li class="sidebar__item sassdoc__item" data-name="str-count" data-type="function"><a href="#function-str-count">str-count</a></li><li class="sidebar__item sassdoc__item" data-name="str-ends-with" data-type="function"><a href="#function-str-ends-with">str-ends-with</a></li><li class="sidebar__item sassdoc__item" data-name="str-explode" data-type="function"><a href="#function-str-explode">str-explode</a></li><li class="sidebar__item sassdoc__item" data-name="str-implode" data-type="function"><a href="#function-str-implode">str-implode</a></li><li class="sidebar__item sassdoc__item" data-name="str-lcfirst" data-type="function"><a href="#function-str-lcfirst">str-lcfirst</a></li><li class="sidebar__item sassdoc__item" data-name="str-replace" data-type="function"><a href="#function-str-replace">str-replace</a></li><li class="sidebar__item sassdoc__item" data-name="str-split" data-type="function"><a href="#function-str-split">str-split</a></li><li class="sidebar__item sassdoc__item" data-name="str-to-list" data-type="function"><a href="#function-str-to-list">str-to-list</a></li><li class="sidebar__item sassdoc__item" data-name="str-to-map" data-type="function"><a href="#function-str-to-map">str-to-map</a></li><li class="sidebar__item sassdoc__item" data-name="str-to-num" data-type="function"><a href="#function-str-to-num">str-to-num</a></li><li class="sidebar__item sassdoc__item" data-name="str-ucfirst" data-type="function"><a href="#function-str-ucfirst">str-ucfirst</a></li><li class="sidebar__item sassdoc__item" data-name="str-ucwords" data-type="function"><a href="#function-str-ucwords">str-ucwords</a></li><li class="sidebar__item sassdoc__item" data-name="convert-units" data-type="function"><a href="#function-convert-units">convert-units</a></li><li class="sidebar__item sassdoc__item" data-name="first-index" data-type="function"><a href="#function-first-index">first-index</a></li><li class="sidebar__item sassdoc__item" data-name="trim" data-type="function"><a href="#function-trim">trim</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-variable"><a href="#undefined-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="strings" data-type="variable"><a href="#variable-strings">strings</a></li><li class="sidebar__item sassdoc__item" data-name="result" data-type="variable"><a href="#variable-result">result</a></li><li class="sidebar__item sassdoc__item" data-name="divider" data-type="variable"><a href="#variable-divider">divider</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="undefined"><div class="container">General</div></h1><section class="main__sub-section" id="undefined-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="function-camelize"><h3 class="item__heading"><a class="item__name" href="#function-camelize">camelize</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function camelize($string) { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`camelize` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  $progress: $string;
+  $result: &quot;&quot;;
+  $exclude: &quot; &quot;, &quot;-&quot;, &quot;–&quot;, &quot;—&quot;, &quot;_&quot;, &quot;,&quot;, &quot;;&quot;, &quot;:&quot;, &quot;.&quot;;
+
+  @while str-length($progress) &gt; 0 {
+    $char: str-slice($progress, 1, 1);
+
+    @if contain($exclude, $char) {
+      $progress: capitalize(str-slice($progress, 2, 2)) + str-slice($progress, 3);
+    } @else {
+      $result: $result + $char;
+      $progress: str-slice($progress, 2);
+    }
+  }
+
+  @return $result;
+ }" data-collapsed="@function camelize($string) { ... }"><code>@function camelize($string) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Returns a camelCase version of the string. Trims surrounding spaces, capitalizes letters following digits, spaces, dashes and underscores, and removes spaces, dashes, as well as underscores.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc">&mdash;<span class="visually-hidden">none</span></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>camelize</code> function expecting a string for $string; #{type-of($string)} given.</p></li></ul><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-result"><code>result</code></a></li></ul></section><section class="main__item container item" id="function-char-at"><h3 class="item__heading"><a class="item__name" href="#function-char-at">char-at</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function char-at($string, $index) { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`char-at` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  @if type-of($index) != &quot;number&quot; {
+    @error &quot;`char-at` function expecting a number for $index; #{type-of($index)} given.&quot;;
+  }
+
+  @if $index &lt; 1 or $index &gt; str-length($string) {
+    @error &quot;Out of bounds $index for `char-at`.&quot;;
+  }
+
+  @return str-slice($string, $index, $index);
+ }" data-collapsed="@function char-at($string, $index) { ... }"><code>@function char-at($string, $index) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Return character from <code>$string</code> at <code>$index</code>.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>string to check</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$index</code></th><td data-label="desc"><p>index to inspect</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>char-at</code> function expecting a string for $string; #{type-of($string)} given.</p></li><li><p><code>char-at</code> function expecting a number for $index; #{type-of($index)} given.</p></li><li><p>Out of bounds $index for <code>char-at</code>.</p></li></ul></section><section class="main__item container item" id="function-contains"><h3 class="item__heading"><a class="item__name" href="#function-contains">contains</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function contains($list, $values) { 
+  @if type-of($list) != &quot;list&quot; {
+    @warn &quot;Type Error: Expected a $list of type ´list´, provided #{type-of($list)} #{$list}&quot;;
+    @return false;
+  }
+
+  $result: false;
+
+  @each $key in $values {
+    @each $item in $list {
+      @if length($item) &gt; 1 {
+        $result: $result or contains($item, $values...);
+      } @else if index($item, $key) {
+        $result: true;
+      }
+    }
+  }
+
+  @return $result;
+ }" data-collapsed="@function contains($list, $values) { ... }"><code>@function contains($list, $values) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Checks if a list contains a value(s).</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$list</code></th><td data-label="desc"><p>The list to check against.</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$values</code></th><td data-label="desc"><p>A single value or list of values to check for.</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Bool</code></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>contains($list, $values)</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-result"><code>result</code></a></li></ul></section><section class="main__item container item" id="function-str-count"><h3 class="item__heading"><a class="item__name" href="#function-str-count">str-count</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-count($string, $needle) { 
+  $string: unquote($string);
+  $needle: unquote($needle);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-count` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  @if type-of($needle) != &quot;string&quot; {
+    @error &quot;`str-count` function expecting a string for $needle; #{type-of($needle)} given.&quot;;
+  }
+
+  $index: str-index($string, $needle);
+  $result: if($index, 1, 0);
+
+  @if $index {
+    @for $i from $index + str-length($needle) through str-length($string) {
+      @if str-slice($string, $i, $i + str-length($needle) - 1) == $needle {
+        $result: $result + 1;
+      }
+    }
+  }
+
+  @return $result;
+ }" data-collapsed="@function str-count($string, $needle) { ... }"><code>@function str-count($string, $needle) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Count the number of occurrences of <code>$needle</code> in <code>$string</code>.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>string</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$needle</code></th><td data-label="desc"><p>substring to count in <code>$string</code></p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Number</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-count</code> function expecting a string for $string; #{type-of($string)} given.</p></li><li><p><code>str-count</code> function expecting a string for $needle; #{type-of($needle)} given.</p></li></ul><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-result"><code>result</code></a></li></ul></section><section class="main__item container item" id="function-str-ends-with"><h3 class="item__heading"><a class="item__name" href="#function-str-ends-with">str-ends-with</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-ends-with($string, $needle) { 
+  $string: unquote($string);
+  $needle: unquote($needle);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-starts-with` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  @if type-of($needle) != &quot;string&quot; {
+    @error &quot;`str-starts-with` function expecting a string for $needle; #{type-of($needle)} given.&quot;;
+  }
+
+  @return str-slice($string, -1 * str-length($needle)) == $needle;
+ }" data-collapsed="@function str-ends-with($string, $needle) { ... }"><code>@function str-ends-with($string, $needle) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Check whether <code>$string</code> ends with <code>$needle</code>.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>string to check</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$needle</code></th><td data-label="desc"><p>substring to check</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Bool</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-starts-with</code> function expecting a string for $string; #{type-of($string)} given.</p></li><li><p><code>str-starts-with</code> function expecting a string for $needle; #{type-of($needle)} given.</p></li></ul></section><section class="main__item container item" id="function-str-explode"><h3 class="item__heading"><a class="item__name" href="#function-str-explode">str-explode</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-explode($string, $delimiter) { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`explode` function expecting a string; #{type-of($string)} given.&quot;;
+  }
+
+  @if type-of($delimiter) != &quot;string&quot; {
+    @error &quot;`explode` function expecting a string; #{type-of($delimiter)} given.&quot;;
+  }
+
+  $result: ();
+  $length: str-length($string);
+
+  @if str-length($delimiter) == 0 {
+    @for $i from 1 through $length {
+      $result: append($result, str-slice($string, $i, $i));
+    }
+
+    @return $result;
+  }
+
+  $running: true;
+  $remaining: $string;
+
+  @while $running {
+    $index: str-index($remaining, $delimiter);
+
+    @if $index {
+      $slice: str-slice($remaining, 1, $index - 1);
+      $result: append($result, $slice);
+      $remaining: str-slice($remaining, $index + str-length($delimiter));
+    } @else {
+      $running: false;
+    }
+  }
+
+  @return append($result, $remaining);
+ }" data-collapsed="@function str-explode($string, $delimiter) { ... }"><code>@function str-explode($string, $delimiter) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Split <code>$string</code> into several parts using <code>$delimiter</code>.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>string to split</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$delimiter</code></th><td data-label="desc"><p>(&quot;&quot;) - string to use as a delimiter to split <code>$string</code></p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>List</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>explode</code> function expecting a string; #{type-of($string)} given.</p></li><li><p><code>explode</code> function expecting a string; #{type-of($delimiter)} given.</p></li></ul><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-result"><code>result</code></a></li></ul></section><section class="main__item container item" id="function-str-implode"><h3 class="item__heading"><a class="item__name" href="#function-str-implode">str-implode</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-implode($list) { 
+  @if type-of($list) != &quot;list&quot; {
+    @error &quot;$list for str-implode must be a list&quot;;
+  }
+
+  $result: &quot;&quot;;
+
+  @each $item in $list {
+    $result: $result + if(length($item) &gt; 1, str-implode($item), $item);
+  }
+
+  @return $result;
+ }" data-collapsed="@function str-implode($list) { ... }"><code>@function str-implode($list) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Implode <code>$list</code> into a string.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$list</code></th><td data-label="desc"><p>list to convert to string</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p>$list for str-implode must be a list</p></li></ul><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-result"><code>result</code></a></li></ul></section><section class="main__item container item" id="function-str-lcfirst"><h3 class="item__heading"><a class="item__name" href="#function-str-lcfirst">str-lcfirst</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-lcfirst($string) { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-lcfirst` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+  @return to-lower-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+ }" data-collapsed="@function str-lcfirst($string) { ... }"><code>@function str-lcfirst($string) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Uncapitalize string</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc">&mdash;<span class="visually-hidden">none</span></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-lcfirst</code> function expecting a string for $string; #{type-of($string)} given.</p></li></ul></section><section class="main__item container item" id="function-str-replace"><h3 class="item__heading"><a class="item__name" href="#function-str-replace">str-replace</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-replace($string, $search, $replace) { 
+  $string: unquote($string);
+  $search: unquote($search);
+  $replacement: unquote($replacement);
+  $fail-silently: unquote($fail-silently);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-replace` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replacement + str-replace(str-slice($string, $index + str-length($search)), $search, $replacement);
+  }
+
+  @if $fail-silently {
+    @return $string;
+  } @else {
+    @error &quot;#{$search} was not found in #{$string}&quot;;
+  }
+ }" data-collapsed="@function str-replace($string, $search, $replace) { ... }"><code>@function str-replace($string, $search, $replace) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>String replace</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>Initial string</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$search</code></th><td data-label="desc"><p>Substring to replace</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$replace</code></th><td data-label="desc"><p>(&quot;&quot;) - New value</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>Updated string</p></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>str-replace(&quot;beforeDURINGafter&quot;, &quot;DURING&quot;, &quot;REPLACED&quot;);</code></pre></div><div class="item__example example"><pre class="example__code language-Output"><code>beforeafter</code></pre></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-replace</code> function expecting a string for $string; #{type-of($string)} given.</p></li><li><p>#{$search} was not found in #{$string}</p></li></ul><h3 class="item__sub-heading">Author</h3><ul class="list-unstyled"><li><p>Hugo Giraudel https:gist.github.com/HugoGiraudel/1b4f2da5527830088e4d</p></li></ul></section><section class="main__item container item" id="function-str-split"><h3 class="item__heading"><a class="item__name" href="#function-str-split">str-split</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-split($string, $separator, $limit) { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-split` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  $result: zip(());
+
+  @if not $separator {
+    @return ($string,);
+  }
+
+  @if $separator == &quot;&quot; {
+    @for $i from 1 through str-length($string) {
+      $result: append($result, str-slice($string, $i, $i));
+    }
+
+    @return $result;
+  }
+
+  $running: true;
+  $progress: $string;
+  $length: str-length($separator);
+
+  @while $running {
+    $index: str-index($progress, $separator);
+    @if $index {
+      $result: append($result, str-slice($progress, 1, ($index - 1)));
+      $progress: str-slice($progress, ($index + $length));
+    } @else {
+      $running: false;
+    }
+  }
+
+  $result: append($result, $progress);
+
+  @if $limit and $limit &gt; 0 {
+    $limit: if($limit &gt; length($result), length($result), $limit);
+    $return: ();
+    @for $i from 1 through $limit {
+      $return: append($return, nth($result, $i));
+    }
+
+    @return $return;
+  }
+
+  @return $result;
+ }" data-collapsed="@function str-split($string, $separator, $limit) { ... }"><code>@function str-split($string, $separator, $limit) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>String split</p><p>Splits a String into a list of substrings using <code>$separator</code>. If separator is omitted, the list returned contains one element consisting of the entire string. If separator is an empty string, str is converted to a list of all characters. Integer specifying a limit on the number of splits to be found. The split method still splits on every match of separator, but it truncates the returned list to at most limit elements.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc">&mdash;<span class="visually-hidden">none</span></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$separator</code></th><td data-label="desc">&mdash;<span class="visually-hidden">none</span></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$limit</code></th><td data-label="desc">&mdash;<span class="visually-hidden">none</span></td><td data-label="type"><code>$number</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>List</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-split</code> function expecting a string for $string; #{type-of($string)} given.</p></li></ul><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-result"><code>result</code></a></li></ul><h3 class="item__sub-heading">Author</h3><ul class="list-unstyled"><li><p>pascalduez https:gist.github.com/pascalduez/065e560c6314c7e9d7f8</p></li></ul></section><section class="main__item container item" id="function-str-to-list"><h3 class="item__heading"><a class="item__name" href="#function-str-to-list">str-to-list</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-to-list() { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-to-list` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  $work-str: str-slice($string, $start-at);
+  $list: ();
+  $index-of-first-space: str-index($work-str, $separator);
+
+  @if $index-of-first-space == null {
+    $list: ($work-str);
+  } @else {
+    $list: (str-slice($work-str, 1, $index-of-first-space - 1));
+    $list: join($list, str-to-list($work-str, $start-at: $index-of-first-space + 1));
+  }
+
+  @return $list;
+ }" data-collapsed="@function str-to-list() { ... }"><code>@function str-to-list() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>$selectorItems: str-to-list(#{&amp;});</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-to-list</code> function expecting a string for $string; #{type-of($string)} given.</p></li></ul></section><section class="main__item container item" id="function-str-to-map"><h3 class="item__heading"><a class="item__name" href="#function-str-to-map">str-to-map</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-to-map() { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-to-map` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  @if $string {
+    $comma:   str-index($string, &quot;,&quot;);
+    $colon:   str-index($string, &quot;:&quot;);
+    $item:    if($comma, str-slice($string, 0, $comma - 1), $string);
+    $string:  if($comma, str-slice($string, $comma +1), null);
+    $key:     str-slice($item, 0, $colon - 1);
+    $val:     str-slice($item, $colon +1);
+    $map:     map-merge($map, ($key: $val));
+
+    @return str-to-map($string, $map);
+  }
+
+  @return $map;
+ }" data-collapsed="@function str-to-map() { ... }"><code>@function str-to-map() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>https:gist.github.com/jakob-e/f3accce1f6277fea1d89</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Maps</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-to-map</code> function expecting a string for $string; #{type-of($string)} given.</p></li></ul></section><section class="main__item container item" id="function-str-to-num"><h3 class="item__heading"><a class="item__name" href="#function-str-to-num">str-to-num</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-to-num() { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-to-num` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  /// Matrices
+  $strings: &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot; &quot;7&quot; &quot;8&quot; &quot;9&quot;;
+  $numbers:  0   1   2   3   4   5   6   7   8   9;
+
+  /// Result
+  $result: 0;
+  $divider: 0;
+  $minus: false;
+
+  /// Looping through all characters
+  @for $i from 1 through str-length($string) {
+    $character: str-slice($string, $i, $i);
+    $index: index($strings, $character);
+
+    @if $character == &quot;-&quot; {
+      $minus: true;
+    } @else if $character == &quot;.&quot; {
+      $divider: 1;
+    } @else {
+      @if not $index {
+        $result: if($minus, $result * -1, $result);
+
+        @return convert-units($result, str-slice($string, $i));
+      }
+
+      $number: nth($numbers, $index);
+
+      @if $divider == 0 {
+        $result: $result * 10;
+      } @else {
+        /// Move the decimal dot to the left
+        $divider: $divider * 10;
+        $number: $number / $divider;
+      }
+
+      $result: $result + $number;
+    }
+  }
+
+  @return if($minus, $result * -1, $result);
+ }" data-collapsed="@function str-to-num() { ... }"><code>@function str-to-num() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Helper function for linear/radial-gradient-parsers. Source: http:sassmeister.com/gist/9647408</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-to-num</code> function expecting a string for $string; #{type-of($string)} given.</p></li></ul><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-convert-units"><code>convert-units</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-strings"><code>strings</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-result"><code>result</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-divider"><code>divider</code></a></li></ul></section><section class="main__item container item" id="function-str-ucfirst"><h3 class="item__heading"><a class="item__name" href="#function-str-ucfirst">str-ucfirst</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-ucfirst($string) { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-ucfirst` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+ }" data-collapsed="@function str-ucfirst($string) { ... }"><code>@function str-ucfirst($string) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Capitalize string</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc">&mdash;<span class="visually-hidden">none</span></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-ucfirst</code> function expecting a string for $string; #{type-of($string)} given.</p></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#function-str-ucwords"><code>str-ucwords</code></a></li></ul></section><section class="main__item container item" id="function-str-ucwords"><h3 class="item__heading"><a class="item__name" href="#function-str-ucwords">str-ucwords</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-ucwords($string) { 
+  $string: unquote($string);
+
+  @if type-of($string) != &quot;string&quot; {
+    @error &quot;`str-ucwords` function expecting a string for $string; #{type-of($string)} given.&quot;;
+  }
+
+  $progress: $string;
+  $result: &quot;&quot;;
+
+  $running: true;
+
+  @while $running {
+    $index: str-index($progress, &quot; &quot;);
+
+    @if $index {
+      $result: $result + str-ucfirst(str-slice($progress, 1, $index));
+      $progress: str-slice($progress, ($index + 1));
+    } @else {
+      $running: false;
+    }
+  }
+
+  @return str-ucfirst($result) + str-ucfirst($progress);
+ }" data-collapsed="@function str-ucwords($string) { ... }"><code>@function str-ucwords($string) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Capitalize each word in string</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc">&mdash;<span class="visually-hidden">none</span></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p><code>str-ucwords</code> function expecting a string for $string; #{type-of($string)} given.</p></li></ul><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-str-ucfirst"><code>str-ucfirst</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-result"><code>result</code></a></li></ul></section><section class="main__item container item" id="function-convert-units"><h3 class="item__heading"><a class="item__name" href="#function-convert-units">convert-units</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function convert-units($number, $unit) { 
+  $unit: unquote($unit);
+
+  $strings: &quot;px&quot;, &quot;cm&quot;, &quot;mm&quot;, &quot;%&quot;, &quot;ch&quot;, &quot;pica&quot;, &quot;in&quot;, &quot;em&quot;, &quot;rem&quot;, &quot;pt&quot;, &quot;pc&quot;, &quot;ex&quot;, &quot;vw&quot;, &quot;vh&quot;, &quot;vmin&quot;, &quot;vmax&quot;, &quot;deg&quot;, &quot;rad&quot;, &quot;grad&quot;, &quot;turn&quot;;
+  $units:   1px, 1cm, 1mm, 1%, 1ch, 1pica, 1in, 1em, 1rem, 1pt, 1pc, 1ex, 1vw, 1vh, 1vmin, 1vmax, 1deg, 1rad, 1grad, 1turn;
+  $index: index($strings, $unit);
+
+  @if not $index {
+    @warn &quot;Unknown unit `#{$unit}`.&quot;;
+    @return false;
+  }
+
+  @if type-of($number) != &quot;number&quot; {
+    @warn &quot;`#{$number} is not a number`&quot;;
+    @return false;
+  }
+
+  @return $number * nth($units, $index);
+ }" data-collapsed="@function convert-units($number, $unit) { ... }"><code>@function convert-units($number, $unit) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Helper function for str-to-num fn. Source: http:sassmeister.com/gist/9647408</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$number</code></th><td data-label="desc"><p>Number</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$unit</code></th><td data-label="desc">&mdash;<span class="visually-hidden">none</span></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Number</code> or <code>False</code></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>.element {
+  widht: convert-units(2, &quot;px&quot;);
+}
+
+.element {
+  widht: convert-units(100, &quot;rem&quot;);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>CSS Output</p></div><pre class="example__code language-css"><code>.element {
+   widht: 2px;
+}
+
+.element {
+   widht: 100rem;
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-strings"><code>strings</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#function-str-to-num"><code>str-to-num</code></a></li></ul></section><section class="main__item container item" id="function-first-index"><h3 class="item__heading"><a class="item__name" href="#function-first-index">first-index</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function first-index($string, $direction: &quot;left&quot;) { 
+  $string: unquote($string);
+  $direction: unquote($direction);
+
+  @for $i from 1 through str-length($string) {
+    $index: if($direction == &quot;left&quot;, $i, -$i);
+
+    @if str-slice($string, $index, $index) != &quot; &quot; {
+      @return $index;
+    }
+  }
+
+  @return 0;
+ }" data-collapsed="@function first-index($string, $direction: &quot;left&quot;) { ... }"><code>@function first-index($string, $direction: &quot;left&quot;) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Find first char which is not a space</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>String</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$direction</code></th><td data-label="desc"><p>Either <code>left</code> or <code>right</code></p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>&quot;left&quot;</code></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Number</code></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>.element-first {
+  content: first-index(&quot;Find first char&quot;, &quot;left&quot;);
+}
+
+.element-last {
+  content: first-index(&quot;Find first char&quot;, &quot;right&quot;);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>CSS Output</p></div><pre class="example__code language-css"><code>.element-first {
+   content: &quot;1&quot;;
+}
+
+.element-last {
+   content: &quot;-1&quot;;
+}</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#function-trim"><code>trim</code></a></li></ul></section><section class="main__item container item" id="function-trim"><h3 class="item__heading"><a class="item__name" href="#function-trim">trim</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function trim($string) { 
+  $string: unquote($string);
+
+  @return str-slice(
+    $string,
+    first-index($string, &quot;left&quot;),
+    first-index($string, &quot;right&quot;)
+  );
+ }" data-collapsed="@function trim($string) { ... }"><code>@function trim($string) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Trim <code>$string</code></p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>String to trim</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Usage</p></div><pre class="example__code language-scss"><code>.element {
+  content: trim(&quot;        &quot;);
+  content: trim(&quot;no spaces&quot;);
+  content: trim(&quot;   3 spaces in front&quot;);
+  content: trim(&quot;   3 spaces in front and back   &quot;);
+  content: trim(&quot;          lots and lots of spaces&quot;);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>CSS Output</p></div><pre class="example__code language-css"><code>.element {
+  content: &quot;&quot;;
+  content: &quot;no spaces&quot;;
+  content: &quot;3 spaces in front&quot;;
+  content: &quot;3 spaces in front and back&quot;;
+  content: &quot;lots and lots of spaces&quot;;
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-first-index"><code>first-index</code></a></li></ul></section></section><section class="main__sub-section" id="undefined-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="variable-strings"><h3 class="item__heading"><a class="item__name" href="#variable-strings">strings</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$strings: &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot; &quot;7&quot; &quot;8&quot; &quot;9&quot;;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Matrices</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#function-str-to-num"><code>str-to-num</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#function-convert-units"><code>convert-units</code></a></li></ul></section><section class="main__item container item" id="variable-result"><h3 class="item__heading"><a class="item__name" href="#variable-result">result</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$result: 0;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Result</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#function-camelize"><code>camelize</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#function-contains"><code>contains</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#function-str-count"><code>str-count</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#function-str-explode"><code>str-explode</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#function-str-implode"><code>str-implode</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#function-str-split"><code>str-split</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#function-str-to-num"><code>str-to-num</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#function-str-ucwords"><code>str-ucwords</code></a></li></ul></section><section class="main__item container item" id="variable-divider"><h3 class="item__heading"><a class="item__name" href="#variable-divider">divider</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$divider: $divider * 10;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Move the decimal dot to the left</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#function-str-to-num"><code>str-to-num</code></a></li></ul></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --><a class="project-info__name" href="http://growcss.com/">Growcss-stringy</a><!-- Version --> <span class="project-info__version">- v0.0.3</span><!-- License --> <span class="project-info__license">, under MIT</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>

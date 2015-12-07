@@ -1,10 +1,9 @@
 @charset "UTF-8";
 
-//
-// https://gist.github.com/jakob-e/f3accce1f6277fea1d89
-//
-// @return {maps}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+///
+/// https:///gist.github.com/jakob-e/f3accce1f6277fea1d89
+///
+/// @return {maps}
 @function str-to-map($string, $map:()) {
   $string: unquote($string);
 

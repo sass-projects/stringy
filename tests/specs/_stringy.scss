@@ -9,32 +9,31 @@
 //      This project is licensed under the terms of the MIT license
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// Helper function for str-to-num fn.
-// Source: http://sassmeister.com/gist/9647408
-//
-// @param {number} $number - Number
-// @param {string} $unit
-//
-// @return {number|false}
-//
-// @example scss - Usage
-//   .element {
-//     widht: convert-units(2, "px");
-//   }
-//
-//   .element {
-//     widht: convert-units(100, "rem");
-//   }
-//
-// @example css - CSS Output
-//   .element {
-//      widht: 2px;
-//   }
-//
-//   .element {
-//      widht: 100rem;
-//   }
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Helper function for str-to-num fn.
+/// Source: http:///sassmeister.com/gist/9647408
+///
+/// @param {number} $number - Number
+/// @param {string} $unit
+///
+/// @return {number|false}
+///
+/// @example scss - Usage
+///   .element {
+///     widht: convert-units(2, "px");
+///   }
+///
+///   .element {
+///     widht: convert-units(100, "rem");
+///   }
+///
+/// @example css - CSS Output
+///   .element {
+///      widht: 2px;
+///   }
+///
+///   .element {
+///      widht: 100rem;
+///   }
 @function convert-units($number, $unit) {
   $unit: unquote($unit);
 
@@ -55,31 +54,30 @@
   @return $number * nth($units, $index);
 }
 
-// Find first char which is not a space
-//
-// @param {string} $string - String
-// @param {string} $direction ["left"] - Either `left` or `right`
-//
-// @return {number}
-//
-// @example scss - Usage
-//   .element-first {
-//     content: first-index("Find first char", "left");
-//   }
-//
-//   .element-last {
-//     content: first-index("Find first char", "right");
-//   }
-//
-// @example css - CSS Output
-//   .element-first {
-//      content: "1";
-//   }
-//
-//   .element-last {
-//      content: "-1";
-//   }
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Find first char which is not a space
+///
+/// @param {string} $string - String
+/// @param {string} $direction ["left"] - Either `left` or `right`
+///
+/// @return {number}
+///
+/// @example scss - Usage
+///   .element-first {
+///     content: first-index("Find first char", "left");
+///   }
+///
+///   .element-last {
+///     content: first-index("Find first char", "right");
+///   }
+///
+/// @example css - CSS Output
+///   .element-first {
+///      content: "1";
+///   }
+///
+///   .element-last {
+///      content: "-1";
+///   }
 @function first-index($string, $direction: left) {
   $string: unquote($string);
   $direction: unquote($direction);
@@ -95,30 +93,29 @@
   @return 0;
 }
 
-// Trim `$string`
-//
-// @param {string} $string - String to trim
-//
-// @return {string}
-//
-// @example scss - Usage
-//   .element {
-//     content: trim("        ");
-//     content: trim("no spaces");
-//     content: trim("   3 spaces in front");
-//     content: trim("   3 spaces in front and back   ");
-//     content: trim("          lots and lots of spaces");
-//   }
-//
-// @example css - CSS Output
-//   .element {
-//     content: "";
-//     content: "no spaces";
-//     content: "3 spaces in front";
-//     content: "3 spaces in front and back";
-//     content: "lots and lots of spaces";
-//   }
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Trim `$string`
+///
+/// @param {string} $string - String to trim
+///
+/// @return {string}
+///
+/// @example scss - Usage
+///   .element {
+///     content: trim("        ");
+///     content: trim("no spaces");
+///     content: trim("   3 spaces in front");
+///     content: trim("   3 spaces in front and back   ");
+///     content: trim("          lots and lots of spaces");
+///   }
+///
+/// @example css - CSS Output
+///   .element {
+///     content: "";
+///     content: "no spaces";
+///     content: "3 spaces in front";
+///     content: "3 spaces in front and back";
+///     content: "lots and lots of spaces";
+///   }
 @function trim($string) {
   $string: unquote($string);
 
@@ -129,13 +126,12 @@
   );
 }
 
-// Returns a camelCase version of the string.
-// Trims surrounding spaces, capitalizes letters following digits, spaces, dashes and underscores, and removes spaces, dashes, as well as underscores.
-//
-// @param {string} $string
-//
-// @return {string}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Returns a camelCase version of the string.
+/// Trims surrounding spaces, capitalizes letters following digits, spaces, dashes and underscores, and removes spaces, dashes, as well as underscores.
+///
+/// @param {string} $string
+///
+/// @return {string}
 @function camelize($string) {
   $string: unquote($string);
 
@@ -161,13 +157,12 @@
   @return $result;
 }
 
-// Return character from `$string` at `$index`.
-//
-// @param {string} $string - string to check
-// @param {string} $index  - index to inspect
-//
-// @return {string}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Return character from `$string` at `$index`.
+///
+/// @param {string} $string - string to check
+/// @param {string} $index  - index to inspect
+///
+/// @return {string}
 @function char-at($string, $index) {
   $string: unquote($string);
 
@@ -186,13 +181,45 @@
   @return str-slice($string, $index, $index);
 }
 
-// Count the number of occurrences of `$needle` in `$string`.
-//
-// @param {string} $string - string
-// @param {string} $needle - substring to count in `$string`
-//
-// @return {number}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Checks if a list contains a value(s).
+///
+/// @param {list} $list
+///   The list to check against.
+///
+/// @param {list} $values
+///   A single value or list of values to check for.
+///
+/// @example scss - Usage
+///   contains($list, $values)
+///
+/// @return {bool}
+@function contains($list, $values...) {
+  @if type-of($list) != "list" {
+    @warn "Type Error: Expected a $list of type ´list´, provided #{type-of($list)} #{$list}";
+    @return false;
+  }
+
+  $result: false;
+
+  @each $key in $values {
+    @each $item in $list {
+      @if length($item) > 1 {
+        $result: $result or contains($item, $values);
+      } @else if index($item, $key) {
+        $result: true;
+      }
+    }
+  }
+
+  @return $result;
+}
+
+/// Count the number of occurrences of `$needle` in `$string`.
+///
+/// @param {string} $string - string
+/// @param {string} $needle - substring to count in `$string`
+///
+/// @return {number}
 @function str-count($string, $needle) {
   $string: unquote($string);
   $needle: unquote($needle);
@@ -219,13 +246,12 @@
   @return $result;
 }
 
-// Check whether `$string` ends with `$needle`.
-//
-// @param {string} $string - string to check
-// @param {string} $needle - substring to check
-//
-// @return {bool}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Check whether `$string` ends with `$needle`.
+///
+/// @param {string} $string - string to check
+/// @param {string} $needle - substring to check
+///
+/// @return {bool}
 @function str-ends-with($string, $needle) {
   $string: unquote($string);
   $needle: unquote($needle);
@@ -241,13 +267,12 @@
   @return str-slice($string, -1 * str-length($needle)) == $needle;
 }
 
-// Split `$string` into several parts using `$delimiter`.
-//
-// @param {string} $string    - string to split
-// @param {string} $delimiter ("") - string to use as a delimiter to split `$string`
-//
-// @return {list}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Split `$string` into several parts using `$delimiter`.
+///
+/// @param {string} $string    - string to split
+/// @param {string} $delimiter ("") - string to use as a delimiter to split `$string`
+///
+/// @return {list}
 @function str-explode($string, $delimiter: "") {
   $string: unquote($string);
 
@@ -288,12 +313,11 @@
   @return append($result, $remaining);
 }
 
-// Implode `$list` into a string.
-//
-// @param {list} $list - list to convert to string
-//
-// @return {string}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Implode `$list` into a string.
+///
+/// @param {list} $list - list to convert to string
+///
+/// @return {string}
 @function str-implode($list) {
   @if type-of($list) != "list" {
     @error "$list for str-implode must be a list";
@@ -308,12 +332,11 @@
   @return $result;
 }
 
-// Uncapitalize string
-//
-// @param {string} $string
-//
-// @return {string}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Uncapitalize string
+///
+/// @param {string} $string
+///
+/// @return {string}
 @function str-lcfirst($string) {
   $string: unquote($string);
 
@@ -323,22 +346,21 @@
   @return to-lower-case(str-slice($string, 1, 1)) + str-slice($string, 2);
 }
 
-// String replace
-//
-// @example scss - Usage
-//   str-replace("beforeDURINGafter", "DURING", "REPLACED");
-//
-// @example - Output
-//   beforeafter
-//
-// @param {string} $string - Initial string
-// @param {string} $search - Substring to replace
-// @param {string} $replace ("") - New value
-//
-// @return {string} - Updated string
-//
-// @author Hugo Giraudel https://gist.github.com/HugoGiraudel/1b4f2da5527830088e4d
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// String replace
+///
+/// @example scss - Usage
+///   str-replace("beforeDURINGafter", "DURING", "REPLACED");
+///
+/// @example - Output
+///   beforeafter
+///
+/// @param {string} $string - Initial string
+/// @param {string} $search - Substring to replace
+/// @param {string} $replace ("") - New value
+///
+/// @return {string} - Updated string
+///
+/// @author Hugo Giraudel https:///gist.github.com/HugoGiraudel/1b4f2da5527830088e4d
 @function str-replace($string, $search, $replacement, $fail-silently: false) {
   $string: unquote($string);
   $search: unquote($search);
@@ -362,22 +384,21 @@
   }
 }
 
-// String split
-//
-// Splits a String into a list of substrings using `$separator`.
-// If separator is omitted, the list returned contains one element consisting of the entire string.
-// If separator is an empty string, str is converted to a list of all characters.
-// Integer specifying a limit on the number of splits to be found.
-// The split method still splits on every match of separator, but it truncates the returned list to at most limit elements.
-//
-// @param {string} $string
-// @param {string} $separator
-// @param {$number} $limit
-//
-// @return {list}
-//
-// @author pascalduez https://gist.github.com/pascalduez/065e560c6314c7e9d7f8
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// String split
+///
+/// Splits a String into a list of substrings using `$separator`.
+/// If separator is omitted, the list returned contains one element consisting of the entire string.
+/// If separator is an empty string, str is converted to a list of all characters.
+/// Integer specifying a limit on the number of splits to be found.
+/// The split method still splits on every match of separator, but it truncates the returned list to at most limit elements.
+///
+/// @param {string} $string
+/// @param {string} $separator
+/// @param {$number} $limit
+///
+/// @return {list}
+///
+/// @author pascalduez https:///gist.github.com/pascalduez/065e560c6314c7e9d7f8
 @function str-split($string, $separator: null, $limit: null) {
   $string: unquote($string);
 
@@ -428,10 +449,10 @@
   @return $result;
 }
 
-// $selectorItems: str-to-list(#{&});
-// @each $selectorItem in $selectorItems {
-//     @debug $selectorItem;
-// }
+/// $selectorItems: str-to-list(#{&});
+/// @each $selectorItem in $selectorItems {
+///     @debug $selectorItem;
+/// }
 @function str-to-list($string, $separator: " ", $start-at: 1) {
   $string: unquote($string);
 
@@ -453,11 +474,10 @@
   @return $list;
 }
 
-//
-// https://gist.github.com/jakob-e/f3accce1f6277fea1d89
-//
-// @return {maps}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+///
+/// https:///gist.github.com/jakob-e/f3accce1f6277fea1d89
+///
+/// @return {maps}
 @function str-to-map($string, $map:()) {
   $string: unquote($string);
 
@@ -480,9 +500,8 @@
   @return $map;
 }
 
-// Helper function for linear/radial-gradient-parsers.
-// Source: http://sassmeister.com/gist/9647408
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Helper function for linear/radial-gradient-parsers.
+/// Source: http:///sassmeister.com/gist/9647408
 @function str-to-num($string) {
   $string: unquote($string);
 
@@ -490,16 +509,16 @@
     @error "`str-to-num` function expecting a string for $string; #{type-of($string)} given.";
   }
 
-  // Matrices
+  /// Matrices
   $strings: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
   $numbers:  0   1   2   3   4   5   6   7   8   9;
 
-  // Result
+  /// Result
   $result: 0;
   $divider: 0;
   $minus: false;
 
-  // Looping through all characters
+  /// Looping through all characters
   @for $i from 1 through str-length($string) {
     $character: str-slice($string, $i, $i);
     $index: index($strings, $character);
@@ -520,7 +539,7 @@
       @if $divider == 0 {
         $result: $result * 10;
       } @else {
-        // Move the decimal dot to the left
+        /// Move the decimal dot to the left
         $divider: $divider * 10;
         $number: $number / $divider;
       }
@@ -532,12 +551,11 @@
   @return if($minus, $result * -1, $result);
 }
 
-// Capitalize string
-//
-// @param {string} $string
-//
-// @return {string}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Capitalize string
+///
+/// @param {string} $string
+///
+/// @return {string}
 @function str-ucfirst($string) {
   $string: unquote($string);
 
@@ -548,12 +566,11 @@
   @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
 }
 
-// Capitalize each word in string
-//
-// @param {string} $string
-//
-// @return {string}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Capitalize each word in string
+///
+/// @param {string} $string
+///
+/// @return {string}
 @function str-ucwords($string) {
   $string: unquote($string);
 

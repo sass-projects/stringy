@@ -1,31 +1,30 @@
 @charset "UTF-8";
 
-// Helper function for str-to-num fn.
-// Source: http://sassmeister.com/gist/9647408
-//
-// @param {number} $number - Number
-// @param {string} $unit
-//
-// @return {number|false}
-//
-// @example scss - Usage
-//   .element {
-//     widht: convert-units(2, "px");
-//   }
-//
-//   .element {
-//     widht: convert-units(100, "rem");
-//   }
-//
-// @example css - CSS Output
-//   .element {
-//      widht: 2px;
-//   }
-//
-//   .element {
-//      widht: 100rem;
-//   }
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Helper function for str-to-num fn.
+/// Source: http:///sassmeister.com/gist/9647408
+///
+/// @param {number} $number - Number
+/// @param {string} $unit
+///
+/// @return {number|false}
+///
+/// @example scss - Usage
+///   .element {
+///     widht: convert-units(2, "px");
+///   }
+///
+///   .element {
+///     widht: convert-units(100, "rem");
+///   }
+///
+/// @example css - CSS Output
+///   .element {
+///      widht: 2px;
+///   }
+///
+///   .element {
+///      widht: 100rem;
+///   }
 @function convert-units($number, $unit) {
   $unit: unquote($unit);
 

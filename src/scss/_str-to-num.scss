@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
-// Helper function for linear/radial-gradient-parsers.
-// Source: http://sassmeister.com/gist/9647408
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Helper function for linear/radial-gradient-parsers.
+/// Source: http:///sassmeister.com/gist/9647408
 @function str-to-num($string) {
   $string: unquote($string);
 
@@ -10,16 +9,16 @@
     @error "`str-to-num` function expecting a string for $string; #{type-of($string)} given.";
   }
 
-  // Matrices
+  /// Matrices
   $strings: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
   $numbers:  0   1   2   3   4   5   6   7   8   9;
 
-  // Result
+  /// Result
   $result: 0;
   $divider: 0;
   $minus: false;
 
-  // Looping through all characters
+  /// Looping through all characters
   @for $i from 1 through str-length($string) {
     $character: str-slice($string, $i, $i);
     $index: index($strings, $character);
@@ -40,7 +39,7 @@
       @if $divider == 0 {
         $result: $result * 10;
       } @else {
-        // Move the decimal dot to the left
+        /// Move the decimal dot to the left
         $divider: $divider * 10;
         $number: $number / $divider;
       }

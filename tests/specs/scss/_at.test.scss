@@ -3,7 +3,7 @@
   @include test("char-at [function] should return the character at given index.") {
     $expect: "b";
 
-    @include assert-equal(char-at("abcde", 2), $expect, "should lower case first character from string.");
+    @include assert-equal(at("abcde", 2), $expect, "should lower case first character from string.");
   }
 
   // Dont work

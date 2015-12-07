@@ -1,21 +1,20 @@
 @charset "UTF-8";
 
-// String split
-//
-// Splits a String into a list of substrings using `$separator`.
-// If separator is omitted, the list returned contains one element consisting of the entire string.
-// If separator is an empty string, str is converted to a list of all characters.
-// Integer specifying a limit on the number of splits to be found.
-// The split method still splits on every match of separator, but it truncates the returned list to at most limit elements.
-//
-// @param {string} $string
-// @param {string} $separator
-// @param {$number} $limit
-//
-// @return {list}
-//
-// @author pascalduez https://gist.github.com/pascalduez/065e560c6314c7e9d7f8
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// String split
+///
+/// Splits a String into a list of substrings using `$separator`.
+/// If separator is omitted, the list returned contains one element consisting of the entire string.
+/// If separator is an empty string, str is converted to a list of all characters.
+/// Integer specifying a limit on the number of splits to be found.
+/// The split method still splits on every match of separator, but it truncates the returned list to at most limit elements.
+///
+/// @param {string}  $string
+/// @param {string}  $separator
+/// @param {$number} $limit
+///
+/// @return {list}
+///
+/// @author pascalduez https:///gist.github.com/pascalduez/065e560c6314c7e9d7f8
 @function str-split($string, $separator: null, $limit: null) {
   $string: unquote($string);
 

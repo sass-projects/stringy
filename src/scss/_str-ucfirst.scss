@@ -1,11 +1,10 @@
 @charset "UTF-8";
 
-// Capitalize string
-//
-// @param {string} $string
-//
-// @return {string}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/// Capitalize string
+///
+/// @param {string} $string
+///
+/// @return {string}
 @function str-ucfirst($string) {
   $string: unquote($string);
 

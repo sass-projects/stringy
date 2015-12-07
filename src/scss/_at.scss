@@ -1,13 +1,12 @@
 @charset "UTF-8";
 
-// Return character from `$string` at `$index`.
-//
-// @param {string} $string - string to check
-// @param {string} $index  - index to inspect
-//
-// @return {string}
-// - - - - - - - - - - - - - - - - - - - - - - - - -
-@function char-at($string, $index) {
+/// Return character from `$string` at `$index`.
+///
+/// @param {string} $string - string to check
+/// @param {string} $index  - index to inspect
+///
+/// @return {string}
+@function at($string, $index) {
   $string: unquote($string);
 
   @if type-of($string) != "string" {
